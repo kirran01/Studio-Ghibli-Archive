@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios");
+const bcryptjs = require("bcryptjs");
 const User = require("../models/User.model");
 
 //GET HOME
@@ -7,7 +8,6 @@ router.get("/", (req, res) => {
   axios
     .get("https://favqs.com/api/qotd")
     .then((filmArr) => {
-      console.log(filmArr.data, "<---");
       res.render("home.hbs");
     })
     .catch((err) => {
@@ -30,10 +30,10 @@ router.post("/signup", (req, res) => {
   User.create({
     email: req.body.email,
     userName: req.body.userName,
-    password: req.body.password,
+    password: bcryptjs.hashSync(req.body.password),
   })
     .then((newUser) => {
-      console.log(newUser);
+      console.log(newUser,"<-- new user");
       res.redirect("/")
     })
     .catch((err) => {
