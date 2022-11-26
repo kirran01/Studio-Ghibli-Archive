@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+nav{
+    background-color: black;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+nav a{
+text-decoration: none;
+color: white;
+}
+
+nav ul{
+display: flex;
+justify-content: space-around;
+list-style: none;
+
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 75px 0 0 0;
+}
