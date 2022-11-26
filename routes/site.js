@@ -4,7 +4,7 @@ const axios = require("axios");
 //GET HOME
 router.get("/", (req, res) => {
   axios
-    .get("https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49")
+    .get("https://favqs.com/api/qotd")
     .then((filmArr) => {
       console.log(filmArr.data, "<---");
       res.render("home.hbs");
