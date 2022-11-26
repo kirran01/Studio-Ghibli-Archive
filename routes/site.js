@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios");
+const User = require("../models/User.model");
 
 //GET HOME
 router.get("/", (req, res) => {
@@ -26,7 +27,18 @@ router.get("/signup", (req, res) => {
 
 //POST SIGNUP
 router.post("/signup", (req, res) => {
-  res.redirect("/");
+  User.create({
+    email: req.body.email,
+    userName: req.body.userName,
+    password: req.body.password,
+  })
+    .then((newUser) => {
+      console.log(newUser);
+      res.redirect("/")
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 //GET LOGIN
