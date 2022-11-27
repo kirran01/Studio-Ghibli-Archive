@@ -3,6 +3,10 @@ const axios = require("axios");
 const bcryptjs = require("bcryptjs");
 const session = require("express-session");
 const User = require("../models/User.model");
+const {
+  isLoggedIn,
+  isNotLoggedIn,
+} = require("../middleware/auth.middleware");
 
 //GET HOME
 router.get("/", (req, res) => {
@@ -17,9 +21,17 @@ router.get("/", (req, res) => {
 });
 
 //GET WATCHLIST
-router.get("/watchlist", (req, res) => {
+router.get("/watchlist", isLoggedIn, (req, res) => {
   res.render("watchlist.hbs");
 });
+
+//LOGOUT 
+router.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  });
+  
 
 //GET SIGNUP
 router.get("/signup", (req, res) => {

@@ -1,7 +1,11 @@
 const  express=require("express");
 const app=express();
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
+
+require("./config/session.config")(app);
 require("dotenv/config");
 
 app.use(express.json());
