@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{!-- two or more slashes in a route takes you out of the root directory so you will have to add another slash at the beginning of the path to hit the right route for our css. --}}
+    <link rel='stylesheet' href='/styles/Show.style.css'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+  <body>
+    <header>
+    <h1>{{title}}</h1>
+    <h2>{{original_title}}</h2>
+    <a href="/">Home</a>
+    </header>
+    <div class="show-info-card">
+    <img src="{{image}}" alt="img">
+    <div class="show-details">
+      <p>{{original_title_romanised}}</p>
+      <p>Directed by: {{director}} Produced by: {{producer}}</p>
+      <p>{{release_date}}</p>
+      <p>Duration:{{running_time}}</p>
+      <p>Rotton Tomatoes score: {{rt_score}}</p>
+      <p>Summary: {{description}}</p>
+      <div class="button-div">
+      <button>Add to Watchlist</button>
+      </div>
+    </div>
+</div>
+<footer>
+Ghibli Archive by Kirran Kirpalani
+</footer>
+  </body>
+</html>

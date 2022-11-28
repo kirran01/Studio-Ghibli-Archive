@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-<link rel='stylesheet' href='styles/Home.style.css' />
+<link rel='stylesheet' href='/styles/Home.style.css' />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -21,7 +21,18 @@
     </nav>
     <header>
     <h1>Ghibli Archive</h1>
-    <p>by Kirran Kirpalani</p>
     </header>
+<div class="shows">
+{{#each movieArr}}
+<div class="show-card">
+<p>{{title}}</p>
+<p>{{original_title}}</p>
+<a href="/show/{{id}}"><img id="pic" src="{{image}}" alt="img"></a>
+</div>
+{{/each}}
+</div>    
+    <footer>
+        <p>Designed and developed by Kirran Kirpalani @ Ironhack Miami 2022</p>
+    </footer>
   </body>
 </html>

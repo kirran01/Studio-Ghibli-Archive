@@ -3,21 +3,18 @@ const axios = require("axios");
 const bcryptjs = require("bcryptjs");
 const session = require("express-session");
 const User = require("../models/User.model");
-const {
-  isLoggedIn,
-  isNotLoggedIn,
-} = require("../middleware/auth.middleware");
+const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth.middleware");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 //GET HOME
 router.get("/", (req, res) => {
-  axios
-    .get("https://favqs.com/api/qotd")
-    .then((filmArr) => {
-      res.render("home.hbs");
+  fetch("https://ghibliapi.herokuapp.com/films")
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      res.render("home.hbs", { movieArr: json });
     })
-    .catch((err) => {
-      res.send(err);
-    });
+    .catch((err) => res.send(err));
 });
 
 //GET WATCHLIST
@@ -25,16 +22,27 @@ router.get("/watchlist", isLoggedIn, (req, res) => {
   res.render("watchlist.hbs");
 });
 
-//LOGOUT 
-router.get("/logout", (req, res) => {
-    req.session.destroy(() => {
-      res.redirect("/");
+//GET SHOW
+router.get("/show/:id", (req, res) => {
+  fetch(`https://ghibliapi.herokuapp.com/films/${req.params.id}`)
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      res.render("show.hbs", json);
+    })
+    .catch((err) => {
+      res.send(err);
     });
+});
+
+//LOGOUT
+router.get("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.redirect("/");
   });
-  
+});
 
 //GET SIGNUP
-router.get("/signup", (req, res) => {
+router.get("/signup", isNotLoggedIn, (req, res) => {
   res.render("signup.hbs");
 });
 
@@ -59,7 +67,7 @@ router.post("/signup", (req, res) => {
 });
 
 //GET LOGIN
-router.get("/login", (req, res) => {
+router.get("/login", isNotLoggedIn, (req, res) => {
   res.render("login.hbs");
 });
 
@@ -92,5 +100,10 @@ router.post("/login", (req, res) => {
       res.send(err);
     });
 });
+
+//GET DAY -  one model with 35 entries for strings?, each day unique route on create button(or edit)-do i need multiple models for each day, or multiple routes or ? should all days be created as the hoempage is rendered?
+// router.get("/day",(req,res)=>{
+
+// })
 
 module.exports = router;
