@@ -8,25 +8,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
   <body>
+  <a id="arrow" href="/"><span >⬅️</span></a>
     <header>
-    <h1>{{title}}</h1>
+    <h1>{{title}} / {{original_title_romanised}}</h1>
     <h2>{{original_title}}</h2>
-    <a href="/">Home</a>
     </header>
-    <div class="show-info-card">
-    <img src="{{image}}" alt="img">
-    <div class="show-details">
-      <p>{{original_title_romanised}}</p>
-      <p>Directed by: {{director}} Produced by: {{producer}}</p>
-      <p>{{release_date}}</p>
-      <p>Duration:{{running_time}}</p>
-      <p>Rotton Tomatoes score: {{rt_score}}</p>
-      <p>Summary: {{description}}</p>
-      <div class="button-div">
-      <button>Add to Watchlist</button>
-      </div>
+    <div class="banner">
+      <img src="{{movie_banner}}" alt="banner">
     </div>
+    <div class="show-info-card">
+    <div class="show-details">
+      <div class="show-info">
+      <p style="text-decoration: underline;">Director</p>
+      <p>{{director}}</p>
+      <hr>
+      <p style="text-decoration: underline;">Producer</p>
+      <p>{{producer}}</p>
+      <hr>
+      <p style="text-decoration: underline;">Release Date</p>
+      <p>{{release_date}}</p>
+      <hr>
+      <p style="text-decoration: underline;">Running Time</p>
+      <p>{{running_time}} mins</p>
+      <hr>
+      <p style="text-decoration: underline;">RT score</p>
+      <p>{{rt_score}}%</p>
+      <hr>
+      <p style="text-decoration: underline;">Plot</p>
+      {{description}}
+      </div>
+          <button>Add to Watchlist</button>
+    </div>
+    <img src="{{image}}" alt="img">
 </div>
+
 <footer>
 Ghibli Archive by Kirran Kirpalani
 </footer>

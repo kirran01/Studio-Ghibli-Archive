@@ -9,6 +9,34 @@ header{
 footer{
     text-align: center;
 }
+.show-info hr{
+        border: 0;
+        height: 1px;
+        background: #333;
+        background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+#main-hr{
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+.banner{
+    display: flex;
+    justify-content: center;
+    padding: 30px 30px 40px;
+}
+
+.banner img{
+    height:300px;   
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
 
 .show-info-card{
     display: flex;
@@ -25,13 +53,19 @@ footer{
 .show-details{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid orange;
+    align-items: center;
     width: 100%;
+    padding: 25px;
+
 }
 
+.show-info{
+    padding: 30px 40px 40px;
+    border-radius: 10px;
+    box-shadow: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+}
 .show-details button{
-    margin: 15px 10px 10px 10px;
+    margin: 25px;
     border: 0;
     outline: 0;
     cursor: pointer;
@@ -41,7 +75,9 @@ footer{
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
-    padding: 10px;
+    padding: 15px;
     display: inline-block;
     min-height: 28px;
+    box-shadow: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+
 }
