@@ -20,7 +20,14 @@ router.get("/", (req, res) => {
 
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {
-  res.render("watchlist.hbs");
+  WatchList.find()
+    .then((watchlistArr) => {
+      console.log(watchlistArr, "<--watchlistarr");
+      res.render("watchlist.hbs", {watchlistArr});
+    })
+    .catch((err) => {
+      res.send(err);
+    });
 });
 
 //GET SHOW

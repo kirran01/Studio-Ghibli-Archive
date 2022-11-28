@@ -13,8 +13,8 @@
     <header>
     <h1>{{title}} / {{original_title_romanised}}</h1>
     <h2>{{original_title}}</h2>
-    <input type="text" value="{{title}}" name="title">
-    <input type="text" value="{{original_title}}" name="originalTitle">
+    <input type="hidden" value="{{title}}" name="title">
+    <input type="hidden" value="{{original_title}}" name="originalTitle">
     </header>
     <div class="banner">
       <img src="{{movie_banner}}" alt="banner">
@@ -43,7 +43,7 @@
           <button>Add to Watchlist</button>
     </div>
     <img src="{{image}}" alt="img">
-    <input type="text" value="{{image}}" name="imageUrl">
+    <input type="hidden" value="{{image}}" name="imageUrl">
 </div>
 </form>
 <footer>
