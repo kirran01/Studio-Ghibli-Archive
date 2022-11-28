@@ -3,6 +3,7 @@ const axios = require("axios");
 const bcryptjs = require("bcryptjs");
 const session = require("express-session");
 const User = require("../models/User.model");
+const WatchList = require("../models/Watchlist.model");
 const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth.middleware");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
@@ -28,6 +29,22 @@ router.get("/show/:id", (req, res) => {
     .then((apiRes) => apiRes.json())
     .then((json) => {
       res.render("show.hbs", json);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+//POST SHOW (ADD TO WATCHLIST)
+router.post("/show/:id", (req, res) => {
+  WatchList.create({
+    imageUrl: req.body.imageUrl,
+    title: req.body.title,
+    originalTitle: req.body.originalTitle,
+  })
+    .then((addedShow) => {
+      console.log(addedShow);
+      res.redirect("/");
     })
     .catch((err) => {
       res.send(err);
@@ -94,7 +111,8 @@ router.post("/login", (req, res) => {
       //   session is for cookies
       console.log(foundUser, "<--foundUser");
       req.session.user = foundUser;
-      res.render("home.hbs", foundUser);
+      // res.render("home.hbs", foundUser);
+      res.redirect("/");
     })
     .catch((err) => {
       res.send(err);
