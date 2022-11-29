@@ -5,6 +5,7 @@ const watchListSchema = new Schema({
   imageUrl: String,
   title: String,
   originalTitle: String,
+  showId:String,
   rating: Number,
 });
 

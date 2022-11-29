@@ -8,17 +8,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
   <body>
-  <a id="arrow" href="/"><span >⬅️</span></a>
+      <nav>
+    <ul>
+       <li>  <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
+        </li>
+        <li>
+            <a href="/watchlist">Watchlist</a>
+        </li>
+        <li>  <a href="/logout">Log out</a>
+        </li>
+    </ul>
+    </nav>
   <form action="/show/{{id}}" method="POST">
     <header>
     <h1>{{title}} / {{original_title_romanised}}</h1>
     <h2>{{original_title}}</h2>
+    <input type="hidden" value="{{id}}" name="showId">
     <input type="hidden" value="{{title}}" name="title">
     <input type="hidden" value="{{original_title}}" name="originalTitle">
     </header>
     <div class="banner">
       <img src="{{movie_banner}}" alt="banner">
     </div>
+    <hr id="divider">
     <div class="show-info-card">
     <div class="show-details">
       <div class="show-info">

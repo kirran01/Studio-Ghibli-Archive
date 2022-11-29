@@ -1,9 +1,48 @@
-<h1>Watchlist</h1>
-<a href="/">home</a>
+<!DOCTYPE html>
+<html>
+<head>
+  {{!-- two or more slashes in a route takes you out of the root directory so you will have to add another slash at the beginning of the path to hit the right route for our css. --}}
+    <link rel='stylesheet' href='/styles/Watchlist.style.css'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+  <body>
+      <nav>
+    <ul>
+       <li>  <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
+        </li>
+        <li>  <a href="/logout">Log out</a>
+        </li>
+    </ul>
+    </nav>
+        <header>
+    <h1>Watchlist</h1>
+    </header>
 
+<div class="shows">
 {{#each watchlistArr}}
-<p>title:{{title}} </p>
-<p>original title:{{originalTitle}}</p>
-<p>image url: {{imageUrl}}</p>
+<form action="/watchlist/{{id}}/delete" method="POST">
+<div class="show-card">
+<p>{{title}}</p>
+<p>{{originalTitle}}</p>
+<a href="/show/{{showId}}"><img id="pic" src="{{imageUrl}}" alt="img"></a>
 <p>rating: </p>
+<button>Delete</button>
+</div>
+</form>
 {{/each}}
+</div>    
+<footer>
+Ghibli Archive by Kirran Kirpalani
+</footer>
+  </body>
+</html>
+
+
+
+
+

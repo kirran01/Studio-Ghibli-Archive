@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
   fetch("https://ghibliapi.herokuapp.com/films")
     .then((apiRes) => apiRes.json())
     .then((json) => {
+      console.log(json[0]);
       res.render("home.hbs", { movieArr: json });
     })
     .catch((err) => res.send(err));
@@ -22,8 +23,7 @@ router.get("/", (req, res) => {
 router.get("/watchlist", isLoggedIn, (req, res) => {
   WatchList.find()
     .then((watchlistArr) => {
-      console.log(watchlistArr, "<--watchlistarr");
-      res.render("watchlist.hbs", {watchlistArr});
+      res.render("watchlist.hbs", { watchlistArr });
     })
     .catch((err) => {
       res.send(err);
@@ -43,14 +43,26 @@ router.get("/show/:id", (req, res) => {
 });
 
 //POST SHOW (ADD TO WATCHLIST)
-router.post("/show/:id", (req, res) => {
+router.post("/show/:id", isLoggedIn, (req, res) => {
   WatchList.create({
+    showId: req.body.showId,
     imageUrl: req.body.imageUrl,
     title: req.body.title,
     originalTitle: req.body.originalTitle,
   })
     .then((addedShow) => {
       console.log(addedShow);
+      res.redirect("/");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+//DELETE SHOW
+router.post("/watchlist/:id/delete", (req, res) => {
+  WatchList.findByIdAndDelete(req.params.id)
+    .then(() => {
       res.redirect("/");
     })
     .catch((err) => {
@@ -125,10 +137,5 @@ router.post("/login", (req, res) => {
       res.send(err);
     });
 });
-
-//GET DAY -  one model with 35 entries for strings?, each day unique route on create button(or edit)-do i need multiple models for each day, or multiple routes or ? should all days be created as the hoempage is rendered?
-// router.get("/day",(req,res)=>{
-
-// })
 
 module.exports = router;
