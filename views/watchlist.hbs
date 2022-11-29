@@ -25,15 +25,22 @@
 
 <div class="shows">
 {{#each watchlistArr}}
-<form action="/watchlist/{{id}}/delete" method="POST">
+
 <div class="show-card">
 <p>{{title}}</p>
 <p>{{originalTitle}}</p>
 <a href="/show/{{showId}}"><img id="pic" src="{{imageUrl}}" alt="img"></a>
-<p>rating: </p>
-<button>Delete</button>
-</div>
+<p>{{rating}}</p>
+<p><a href="/watchlist/{{id}}/edit">rating: </a></p>
+<form action="/watchlist/{{id}}" method="POST">
+    <input type="number" name="rating" min="0" max="5">
+    <button>Submit</button>
 </form>
+<form action="/watchlist/{{id}}/delete" method="POST">
+<button>Delete</button>
+</form>
+</div>
+
 {{/each}}
 </div>    
 <footer>

@@ -13,7 +13,10 @@ const isLoggedIn = (req, res, next) => {
     }
     next();
   };
-  
+
+  const notInWatchList=(req,res,next)=>{
+
+  }
 
 
 module.exports = {isLoggedIn, isNotLoggedIn};

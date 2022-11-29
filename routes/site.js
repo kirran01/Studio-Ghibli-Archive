@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
   fetch("https://ghibliapi.herokuapp.com/films")
     .then((apiRes) => apiRes.json())
     .then((json) => {
-      console.log(json[0]);
+      // console.log(json[0]);
       res.render("home.hbs", { movieArr: json });
     })
     .catch((err) => res.send(err));
@@ -49,13 +49,26 @@ router.post("/show/:id", isLoggedIn, (req, res) => {
     imageUrl: req.body.imageUrl,
     title: req.body.title,
     originalTitle: req.body.originalTitle,
+    rating: req.body.rating,
   })
     .then((addedShow) => {
       console.log(addedShow);
-      res.redirect("/");
+      res.redirect("/watchlist");
     })
     .catch((err) => {
       res.send(err);
+    });
+});
+
+//POST RATING
+router.post("/watchlist/:id", (req, res) => {
+  WatchList.findByIdAndUpdate(req.params.id, { rating: req.body.rating })
+    .then((x) => {
+      console.log(x, "<--WL W RATING");
+      res.redirect("/watchlist");
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 
@@ -68,6 +81,11 @@ router.post("/watchlist/:id/delete", (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+//GET EDIT SHOW
+router.get("/watchlist/:id/edit", (req, res) => {
+  res.render("edit-rating.hbs");
 });
 
 //LOGOUT
