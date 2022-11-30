@@ -23,6 +23,18 @@ router.get("/", (req, res) => {
 //   res.render("home.hbs");
 // });
 
+//GET CHARACTERS
+// router.get("/characters", (req, res) => {
+//   fetch("http://localhost:3001/people")
+//     .then((apiRes) => apiRes.json())
+//     .then((json) => {
+//       console.log(json, "<----chars?");
+//       res.render("characters.hbs");
+//       // res.render("home.hbs", { movieArr: json });
+//     })
+//     .catch((err) => res.send(err));
+// });
+
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {
   WatchList.find()
@@ -48,15 +60,23 @@ router.get("/show/:id", (req, res) => {
 
 //POST SHOW (ADD TO WATCHLIST)
 router.post("/show/:id", isLoggedIn, (req, res) => {
-  WatchList.create({
-    showId: req.body.showId,
-    imageUrl: req.body.imageUrl,
-    title: req.body.title,
-    originalTitle: req.body.originalTitle,
-    rating: req.body.rating,
-  })
+  WatchList.findOne({ showId: req.params.id })
+    .then((foundShow) => {
+      if (foundShow) {
+        res.send("already in watchlist");
+        return;
+      }
+      return WatchList.create({
+        showId: req.body.showId,
+        imageUrl: req.body.imageUrl,
+        title: req.body.title,
+        originalTitle: req.body.originalTitle,
+        rating: req.body.rating,
+        owner: req.session.user._id
+      });
+    })
     .then((addedShow) => {
-      console.log(addedShow);
+      console.log("added show", addedShow);
       res.redirect("/watchlist");
     })
     .catch((err) => {
@@ -111,7 +131,7 @@ router.post("/signup", (req, res) => {
   })
     .then((newUser) => {
       console.log(newUser, "<-- new user");
-      res.redirect("/");
+      res.redirect("/login");
     })
     .catch((err) => {
       res.send(err);
