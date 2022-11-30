@@ -4,10 +4,9 @@ let ratingElements = document.querySelectorAll(".rating-p");
 let formElements = document.querySelectorAll(".rating-form");
 
 let revealRater = (e) => {
-  // for (let i = 0; i < formElements.length; i++) {
-  //   formElements[i]
-  // }
-  e.currentTarget.parentElement.querySelector('.rating-form').classList.toggle("hidden");
+  //we need parent element querysleector because the p element and form are sibling nodes,
+  //so we go a level up to find the parent which is the div "card" and then query select downward.
+  e.target.parentElement.querySelector(".rating-form").classList.toggle("hidden");
 };
 
 for (let i = 0; i < ratingElements.length; i++) {

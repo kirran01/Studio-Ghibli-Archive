@@ -9,18 +9,19 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 //GET HOME
-// router.get("/", (req, res) => {
-//   fetch("https://ghibliapi.herokuapp.com/films")
-//     .then((apiRes) => apiRes.json())
-//     .then((json) => {
-//       res.render("home.hbs", { movieArr: json });
-//     })
-//     .catch((err) => res.send(err));
-// });
-
 router.get("/", (req, res) => {
-  res.render("home.hbs");
+  //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
+  fetch("http://localhost:3001/films")
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      res.render("home.hbs", { movieArr: json });
+    })
+    .catch((err) => res.send(err));
 });
+
+// router.get("/", (req, res) => {
+//   res.render("home.hbs");
+// });
 
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {
