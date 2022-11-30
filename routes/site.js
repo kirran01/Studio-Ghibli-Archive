@@ -36,7 +36,7 @@ router.get("/watchlist", isLoggedIn, (req, res) => {
 
 //GET SHOW
 router.get("/show/:id", (req, res) => {
-  fetch(`https://ghibliapi.herokuapp.com/films/${req.params.id}`)
+  fetch(`http://localhost:3001/films/${req.params.id}`)
     .then((apiRes) => apiRes.json())
     .then((json) => {
       res.render("show.hbs", json);
