@@ -63,7 +63,7 @@ router.post("/show/:id", isLoggedIn, (req, res) => {
   WatchList.findOne({ showId: req.params.id })
     .then((foundShow) => {
       if (foundShow) {
-        res.send("already in watchlist");
+        // console.log("nah");
         return;
       }
       return WatchList.create({
@@ -72,7 +72,7 @@ router.post("/show/:id", isLoggedIn, (req, res) => {
         title: req.body.title,
         originalTitle: req.body.originalTitle,
         rating: req.body.rating,
-        owner: req.session.user._id
+        owner: req.session.user._id,
       });
     })
     .then((addedShow) => {
