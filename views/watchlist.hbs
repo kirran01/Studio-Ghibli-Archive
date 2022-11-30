@@ -8,14 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
   <body>
-      <nav>
+    <nav>
     <ul>
-       <li>  <a href="/">Home</a>
+       <li>  
+        <a href="/">Home</a>
         </li>
         <li>
-            <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
+        <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
         </li>
-        <li>  <a href="/logout">Log out</a>
+        <li> 
+        <a href="/logout">Log out</a>
         </li>
     </ul>
     </nav>
@@ -30,9 +32,8 @@
 <p>{{title}}</p>
 <p>{{originalTitle}}</p>
 <a href="/show/{{showId}}"><img id="pic" src="{{imageUrl}}" alt="img"></a>
-<p>{{rating}}</p>
-<p><a href="/watchlist/{{id}}/edit">rating: </a></p>
-<form action="/watchlist/{{id}}" method="POST">
+<span class="rating-p">{{rating}}/5</span>
+<form class="rating-form hidden" action="/watchlist/{{id}}" method="POST">
     <input type="number" name="rating" min="0" max="5">
     <button>Submit</button>
 </form>
@@ -46,6 +47,7 @@
 <footer>
 Ghibli Archive by Kirran Kirpalani
 </footer>
+<script src="/scripts/script.js"></script>
   </body>
 </html>
 

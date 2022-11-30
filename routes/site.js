@@ -9,14 +9,17 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 //GET HOME
+// router.get("/", (req, res) => {
+//   fetch("https://ghibliapi.herokuapp.com/films")
+//     .then((apiRes) => apiRes.json())
+//     .then((json) => {
+//       res.render("home.hbs", { movieArr: json });
+//     })
+//     .catch((err) => res.send(err));
+// });
+
 router.get("/", (req, res) => {
-  fetch("https://ghibliapi.herokuapp.com/films")
-    .then((apiRes) => apiRes.json())
-    .then((json) => {
-      // console.log(json[0]);
-      res.render("home.hbs", { movieArr: json });
-    })
-    .catch((err) => res.send(err));
+  res.render("home.hbs");
 });
 
 //GET WATCHLIST
@@ -60,11 +63,10 @@ router.post("/show/:id", isLoggedIn, (req, res) => {
     });
 });
 
-//POST RATING
+//POST RATING (UPDATE)
 router.post("/watchlist/:id", (req, res) => {
   WatchList.findByIdAndUpdate(req.params.id, { rating: req.body.rating })
-    .then((x) => {
-      console.log(x, "<--WL W RATING");
+    .then(() => {
       res.redirect("/watchlist");
     })
     .catch((err) => {
@@ -76,16 +78,11 @@ router.post("/watchlist/:id", (req, res) => {
 router.post("/watchlist/:id/delete", (req, res) => {
   WatchList.findByIdAndDelete(req.params.id)
     .then(() => {
-      res.redirect("/");
+      res.redirect("/watchlist");
     })
     .catch((err) => {
       res.send(err);
     });
-});
-
-//GET EDIT SHOW
-router.get("/watchlist/:id/edit", (req, res) => {
-  res.render("edit-rating.hbs");
 });
 
 //LOGOUT

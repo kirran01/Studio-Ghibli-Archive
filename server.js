@@ -1,9 +1,9 @@
-const  express=require("express");
-const app=express();
+const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-
+let d = new Date();
 
 require("./config/session.config")(app);
 require("dotenv/config");
@@ -17,9 +17,7 @@ app.use("/", site);
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
-app.use(express.static(__dirname + '/public'));
-
-
+app.use(express.static(__dirname + "/public"));
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -28,8 +26,6 @@ mongoose
   )
   .catch((err) => console.error("Error connecting to mongo", err));
 
-
 app.listen(3000, () => {
-    console.log(`Server listening on 3000`);
-  });
-  
+  console.log(`Server listening on 3000`);
+});
