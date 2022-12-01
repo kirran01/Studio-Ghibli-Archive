@@ -25,5 +25,10 @@
 <button>Submit</button>
   </form>
 </div>
+    <div class="validationErrors">
+    {{#if errorMessage}}
+      <p class="error">Something went wrong ( {{errorMessage}} )</p>
+    {{/if}}
+  </div>
   </body>
 </html>

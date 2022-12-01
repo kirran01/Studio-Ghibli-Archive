@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
 
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {
-  WatchList.find()
+  WatchList.find({ owner: req.session.user._id })
     .then((watchlistArr) => {
       res.render("watchlist.hbs", { watchlistArr });
     })
@@ -59,12 +59,18 @@ router.get("/show/:id", (req, res) => {
 });
 
 //POST SHOW (ADD TO WATCHLIST)
+//Can not duplicate the owner instead to avoid adding duplicates across accounts
+//cant have same owner and title, but can duplicate title?
 router.post("/show/:id", isLoggedIn, (req, res) => {
-  WatchList.findOne({ showId: req.params.id })
+  WatchList.findOne({ showId: req.params.id, owner: req.session.user._id })
     .then((foundShow) => {
+      console.log(
+        req.session.user._id,
+        "<---- current user / req.session.user._id"
+      );
       if (foundShow) {
-        // console.log("nah");
-        return;
+        console.log(foundShow, "<---foundshow");
+        return Promise.reject("no");
       }
       return WatchList.create({
         showId: req.body.showId,
@@ -76,11 +82,12 @@ router.post("/show/:id", isLoggedIn, (req, res) => {
       });
     })
     .then((addedShow) => {
-      console.log("added show", addedShow);
+      console.log(addedShow);
       res.redirect("/watchlist");
     })
     .catch((err) => {
-      res.send(err);
+      console.log(err, "<---err");
+      res.redirect("/watchlist");
     });
 });
 
@@ -120,8 +127,8 @@ router.get("/signup", isNotLoggedIn, (req, res) => {
 
 //POST SIGNUP
 router.post("/signup", (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    res.send("field(s) are blank");
+  if (!req.body.email || !req.body.password || !req.body.userName) {
+    res.render("signup.hbs", { errorMessage: "Fields can not be blank..." });
     return;
   }
   User.create({
@@ -130,7 +137,6 @@ router.post("/signup", (req, res) => {
     password: bcryptjs.hashSync(req.body.password),
   })
     .then((newUser) => {
-      console.log(newUser, "<-- new user");
       res.redirect("/login");
     })
     .catch((err) => {
@@ -146,13 +152,15 @@ router.get("/login", isNotLoggedIn, (req, res) => {
 //POST LOGIN
 router.post("/login", (req, res) => {
   if (!req.body.email || !req.body.password) {
-    res.send("field(s) are blank");
+    res.render("login.hbs", { errorMessage: "Fields can not be blank..." });
     return;
   }
   User.findOne({ email: req.body.email })
     .then((foundUser) => {
       if (!foundUser) {
-        res.send("user does not exist");
+        res.render("login.hbs", {
+          errorMessage: "That user does not exist...",
+        });
         return;
       }
       const isValidPassword = bcryptjs.compareSync(
@@ -160,13 +168,11 @@ router.post("/login", (req, res) => {
         foundUser.password
       );
       if (!isValidPassword) {
-        res.send("password incorrect");
+        res.render("login.hbs", { errorMessage: "Incorrect password..." });
         return;
       }
-      //   session is for cookies
-      console.log(foundUser, "<--foundUser");
+      // console.log(req.session.user._id, "reqsessuserid");
       req.session.user = foundUser;
-      // res.render("home.hbs", foundUser);
       res.redirect("/");
     })
     .catch((err) => {

@@ -8,8 +8,6 @@ const watchListSchema = new Schema({
   originalTitle: String,
   showId: {
     type: String,
-    required: true,
-    unique: true
   },
   rating: Number,
 });

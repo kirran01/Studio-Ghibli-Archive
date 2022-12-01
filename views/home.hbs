@@ -15,13 +15,19 @@
         <li>
             <a href="/watchlist">Watchlist</a>
         </li>
-        <li>  <a href="/logout">Log out</a>
+        <li>
+            <a href="/logout">Log out</a>
         </li>
     </ul>
     </nav>
     <header>
     <h1>Ghibli Archive</h1>
     </header>
+    <div class="validationErrors">
+    {{#if loginMessage}}
+      <p class="error">User: {{errorMessage}}</p>
+    {{/if}}
+  </div>
 <div class="shows">
 {{#each movieArr}}
 <div class="show-card">
