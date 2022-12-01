@@ -9,15 +9,18 @@
   <body>
     <nav>
     <ul>
-        <li>
-            <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
-        </li>
-        <li>
-            <a href="/watchlist">Watchlist</a>
-        </li>
-        <li>
-            <a href="/logout">Log out</a>
-        </li>
+    {{#if user}}
+    <li>
+      <a href="#">Logged in as  {{user.userName}}</a><a href="/logout"> (Log out)</a>
+    </li>
+    <li>
+      <a href="/watchlist">Watchlist</a>
+    </li>
+    {{else}}
+    <li>
+       <a href="/signup">Sign Up /</a><a href="/login"> Login</a>
+    </li>
+    {{/if}}
     </ul>
     </nav>
     <header>

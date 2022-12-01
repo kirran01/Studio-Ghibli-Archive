@@ -19,21 +19,6 @@ router.get("/", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// router.get("/", (req, res) => {
-//   res.render("home.hbs");
-// });
-
-//GET CHARACTERS
-// router.get("/characters", (req, res) => {
-//   fetch("http://localhost:3001/people")
-//     .then((apiRes) => apiRes.json())
-//     .then((json) => {
-//       console.log(json, "<----chars?");
-//       res.render("characters.hbs");
-//       // res.render("home.hbs", { movieArr: json });
-//     })
-//     .catch((err) => res.send(err));
-// });
 
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {

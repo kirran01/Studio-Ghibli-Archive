@@ -11,13 +11,27 @@ require("dotenv/config");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const site = require("./routes/site");
-app.use("/", site);
+
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
 app.use(express.static(__dirname + "/public"));
+
+//this method checks if there is a current sessinon and user, if true, send it to locals which
+//can be accessed by handlebars
+app.use((req, res, next) => {
+  if(req.session.user){
+    res.locals.user = req.session.user;
+  }
+  next()
+})
+
+const site = require("./routes/site");
+app.use("/", site);
+
+
+
 
 mongoose
   .connect(process.env.MONGO_URI)

@@ -12,15 +12,16 @@
 
   <form class="login-form" action="/login" method="POST">
         <h1>Log in</h1>
-        <h6>Welcome back!</h6>
-        <h6>It's great to see you again...</h6>
+        {{!-- <h6>Welcome back!</h6>
+        <h6>It's great to see you again...</h6> --}}
+        <h6>New here? <a href="/signup">Sign up!</a></h6>
   <label>Email</label>
   <br> 
   <input type="text" name="email">
     <br>
     <label>Password</label>
       <br>
-  <input type="text" name="password">
+  <input type="password" name="password">
     <br>
 <button>Submit</button>
   </form>
