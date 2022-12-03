@@ -7,11 +7,12 @@ const WatchList = require("../models/Watchlist.model");
 const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth.middleware");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+let apiURL = process.env.API_URL;
 
-//GET HOME
+//get home
 router.get("/", (req, res) => {
   //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
-  fetch("http://localhost:3001/films")
+  fetch(`${apiURL}films`)
     .then((apiRes) => apiRes.json())
     .then((json) => {
       res.render("home.hbs", { movieArr: json });
@@ -19,6 +20,47 @@ router.get("/", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+
+//GET HOME SORT BY DURATION HIGHEST TO LOWEST
+router.get("/duration-highest-to-lowest", (req, res) => {
+  //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
+  fetch(`${apiURL}films`)
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      console.log(json, "<--json");
+      let sorted = json.sort((a, b) => b.running_time - a.running_time)
+      res.render("home.hbs", { movieArr: sorted });
+    })
+    .catch((err) => res.send(err));
+});
+
+//SORT BY DURATION LOWEST TO HIGHEST
+router.get("/duration-lowest-to-highest", (req, res) => {
+  //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
+  fetch(`${apiURL}films`)
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      console.log(json, "<--json");
+      let sorted = json.sort((a, b) => a.running_time - b.running_time)
+      res.render("home.hbs", { movieArr: sorted });
+    })
+    .catch((err) => res.send(err));
+});
+
+
+
+//GET HOME sort by rating
+router.get("/best", (req, res) => {
+  //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
+  fetch(`${apiURL}films`)
+    .then((apiRes) => apiRes.json())
+    .then((json) => {
+      console.log(json, "<--json");
+      let sorted = json.sort((a, b) => b.rt_score - a.rt_score)
+      res.render("home.hbs", { movieArr: sorted });
+    })
+    .catch((err) => res.send(err));
+});
 
 //GET WATCHLIST
 router.get("/watchlist", isLoggedIn, (req, res) => {
@@ -33,7 +75,7 @@ router.get("/watchlist", isLoggedIn, (req, res) => {
 
 //GET SHOW
 router.get("/show/:id", (req, res) => {
-  fetch(`http://localhost:3001/films/${req.params.id}`)
+  fetch(`${apiURL}films/${req.params.id}`)
     .then((apiRes) => apiRes.json())
     .then((json) => {
       res.render("show.hbs", json);

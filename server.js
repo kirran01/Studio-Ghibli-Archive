@@ -40,6 +40,6 @@ mongoose
   )
   .catch((err) => console.error("Error connecting to mongo", err));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server listening on 3000`);
 });

@@ -24,7 +24,8 @@ list-style: none;
 
 header{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin: 75px 0 0 0;
 }
@@ -50,4 +51,17 @@ footer{
     padding: 10px;
     border-radius: 18px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.sorting{
+text-align: center;
+display: none;
+}
+
+.sorting-dissapear{
+display: block;
+}
+
+.filter-toggle{
+    
 }

@@ -25,12 +25,20 @@
     </nav>
     <header>
     <h1>Ghibli Archive</h1>
+      <span class="filter-toggle">▽</span>
+<div class="dropdown">
     </header>
     <div class="validationErrors">
     {{#if loginMessage}}
       <p class="error">User: {{errorMessage}}</p>
     {{/if}}
   </div>
+  <div class="sorting">
+  <a href="/best">highest rated</a>
+  <a href="/duration-lowest-to-highest">shortest run-time</a>
+  </div>
+
+
 <div class="shows">
 {{#each movieArr}}
 <div class="show-card">
@@ -43,5 +51,6 @@
     <footer>
         <p>Designed and developed by Kirran Kirpalani @ Ironhack Miami 2022</p>
     </footer>
+  <script src="/scripts/script.js"></script>
   </body>
 </html>

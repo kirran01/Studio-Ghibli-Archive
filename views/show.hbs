@@ -60,6 +60,10 @@
       <p style="text-decoration: underline;">Plot</p>
       {{description}}
       </div>
+      {{#if user}}
+      {{else}}
+      <p id="login-prompt"><a href="/login">Login</a> to add to watchlist! </p>
+      {{/if}}
           <button>Add to Watchlist</button>
     </div>
     <img src="{{image}}" alt="img">

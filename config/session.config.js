@@ -22,7 +22,7 @@ module.exports = app => {
       },
       store: MongoStore.create({
         mongoUrl:
-          process.env.MONGODB_URI ||
+          process.env.MONGO_URI ||
           "mongodb://localhost/project-2",
       }),
     })
