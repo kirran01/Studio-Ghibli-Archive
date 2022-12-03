@@ -2,18 +2,7 @@ console.log("to wonder is to be adventurous within your mind");
 
 let ratingElements = document.querySelectorAll(".rating-p");
 let formElements = document.querySelectorAll(".rating-form");
-let filterButtonElement = document.querySelector(".filter-toggle");
-console.log(filterButtonElement);
 
-let filterElement = document.querySelector(".sorting");
-console.log(filterElement);
-
-let revealFilters = (e) => {
-  console.log(e.target);
-  filterElement.classList.toggle("sorting-dissapear");
-};
-
-filterButtonElement.addEventListener("click", revealFilters);
 
 let revealRater = (e) => {
   console.log(e.target.parentElement.querySelector(".rating-form"));

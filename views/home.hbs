@@ -9,9 +9,10 @@
   <body>
     <nav>
     <ul>
+
     {{#if user}}
     <li>
-      <a href="#">Logged in as  {{user.userName}}</a><a href="/logout"> (Log out)</a>
+      <span>Logged in as {{user.userName}}</span><a href="/logout"> (Log out)</a>
     </li>
     <li>
       <a href="/watchlist">Watchlist</a>
@@ -25,7 +26,15 @@
     </nav>
     <header>
     <h1>Ghibli Archive</h1>
-      <span class="filter-toggle">▽</span>
+      <span class="filter-toggle bounce">filter results</span>
+          <div class="filter-title">
+      {{#if best}}
+      <p>highest rated <a href="/">[undo]</a></p>
+      {{/if}}
+      {{#if shortest}}
+      <p>shortest run-time <a href="/">[undo]</a></p>
+      {{/if}}
+      </div>
 <div class="dropdown">
     </header>
     <div class="validationErrors">
@@ -34,10 +43,9 @@
     {{/if}}
   </div>
   <div class="sorting">
-  <a href="/best">highest rated</a>
-  <a href="/duration-lowest-to-highest">shortest run-time</a>
+  <a class="filter" href="/best:1">highest rated</a>
+  <a class="filter" href="/duration-lowest-to-highest:1">shortest run-time</a>
   </div>
-
 
 <div class="shows">
 {{#each movieArr}}
@@ -51,6 +59,6 @@
     <footer>
         <p>Designed and developed by Kirran Kirpalani @ Ironhack Miami 2022</p>
     </footer>
-  <script src="/scripts/script.js"></script>
+  <script src="/scripts/home.js"></script>
   </body>
 </html>

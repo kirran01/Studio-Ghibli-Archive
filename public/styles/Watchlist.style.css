@@ -19,6 +19,10 @@ nav{
     top: 0;
 }
 
+li{
+    margin: 0 10px 0;
+}
+
 nav a{
 text-decoration: none;
 color: white;
@@ -26,15 +30,16 @@ color: white;
 
 nav ul{
 display: flex;
-justify-content: space-around;
 list-style: none;
-
 }
+
+
 
 .shows{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    animation: fade-in 1s linear;
 }
 
 .show-card{
@@ -71,6 +76,36 @@ list-style: none;
     box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(84 105 212) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
 }
 
+.rating-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+ 
+animation: fade-in 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
 .hidden{
     display:none;
 }
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+@keyframes slide-in {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }

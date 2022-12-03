@@ -21,28 +21,14 @@ router.get("/", (req, res) => {
 });
 
 
-//GET HOME SORT BY DURATION HIGHEST TO LOWEST
-router.get("/duration-highest-to-lowest", (req, res) => {
-  //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
-  fetch(`${apiURL}films`)
-    .then((apiRes) => apiRes.json())
-    .then((json) => {
-      console.log(json, "<--json");
-      let sorted = json.sort((a, b) => b.running_time - a.running_time)
-      res.render("home.hbs", { movieArr: sorted });
-    })
-    .catch((err) => res.send(err));
-});
-
 //SORT BY DURATION LOWEST TO HIGHEST
-router.get("/duration-lowest-to-highest", (req, res) => {
+router.get("/duration-lowest-to-highest:1", (req, res) => {
   //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
   fetch(`${apiURL}films`)
     .then((apiRes) => apiRes.json())
     .then((json) => {
-      console.log(json, "<--json");
       let sorted = json.sort((a, b) => a.running_time - b.running_time)
-      res.render("home.hbs", { movieArr: sorted });
+      res.render("home.hbs", { movieArr: sorted, shortest:req.params});
     })
     .catch((err) => res.send(err));
 });
@@ -50,14 +36,13 @@ router.get("/duration-lowest-to-highest", (req, res) => {
 
 
 //GET HOME sort by rating
-router.get("/best", (req, res) => {
+router.get("/best:1", (req, res) => {
   //localhost is NOT SECURE, so when fetching from localhost, never include "s" in 'http'
   fetch(`${apiURL}films`)
     .then((apiRes) => apiRes.json())
     .then((json) => {
-      console.log(json, "<--json");
       let sorted = json.sort((a, b) => b.rt_score - a.rt_score)
-      res.render("home.hbs", { movieArr: sorted });
+      res.render("home.hbs", { movieArr: sorted, best:req.params });
     })
     .catch((err) => res.send(err));
 });

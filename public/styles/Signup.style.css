@@ -68,3 +68,10 @@ font-weight: normal;
 .validationErrors{
     margin: 20px;
 }
+
+.signup-img{
+    height:300px;  
+    top: 550px;
+    position: absolute;
+    z-index: -1;
+}

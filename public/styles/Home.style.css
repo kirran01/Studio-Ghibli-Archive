@@ -6,8 +6,9 @@ body{
 nav{
     background-color: black;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 nav a{
@@ -17,13 +18,24 @@ color: white;
 
 nav ul{
 display: flex;
-justify-content: space-around;
 list-style: none;
+color: white;
+}
 
+ul li{
+margin: 0 10px 0;
+  text-decoration: dashed;
+}
+
+
+
+nav a:hover{
+text-decoration: underline;
 }
 
 header{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -34,7 +46,13 @@ footer{
     text-align: center;
 }
 
+img{
+    z-index: -1;
+}
+
 .shows{
+    z-index: -1;
+    animation: fade-in 1s linear;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -53,15 +71,45 @@ footer{
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
+
+.filter{
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+}
+
+.filter-title a{
+    text-decoration: none;
+    color: black;
+}
+
 .sorting{
 text-align: center;
 display: none;
+animation: fade-in 1s linear;
+margin: 10px;
 }
 
 .sorting-dissapear{
-display: block;
+    display: block;
 }
 
 .filter-toggle{
-    
+cursor: pointer;
+}
+
+@keyframes fade-input{
+    0%{opacity: 1;
+    }
+    100%{opacity: .2;
+    }
+}
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
