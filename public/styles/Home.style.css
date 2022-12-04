@@ -20,6 +20,7 @@ nav ul{
 display: flex;
 list-style: none;
 color: white;
+padding:0;
 }
 
 ul li{
@@ -112,4 +113,17 @@ cursor: pointer;
     100%{
         opacity: 1;
     }
+}
+
+@media (max-width:320px){
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    color: white;
+}
+
+nav span{
+    display: none;
+}
 }

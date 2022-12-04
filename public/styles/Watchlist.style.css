@@ -109,3 +109,19 @@ animation: fade-in 1s cubic-bezier(0.075, 0.82, 0.165, 1);
       transform: translateY(0%);
     }
   }
+
+
+  @media (max-width:320px){
+    nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        color: white;
+    }
+    
+    nav span{
+        display: none;
+    }
+
+
+    }

@@ -75,3 +75,14 @@ font-weight: normal;
     position: absolute;
     z-index: -1;
 }
+
+
+
+@media(max-width:320px){
+    .signup-img {
+        height: 300px;
+        top: 339px;
+        position: absolute;
+        z-index: -1;
+    }
+}

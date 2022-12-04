@@ -12,7 +12,7 @@
     <ul>
       {{#if user}}
       <li>
-      <a href="#">Logged in as:  {{user.userName}}</a><a href="/logout"> (Log out)</a>
+       <span>Logged in as {{user.userName}}</span><a href="/logout"> [Log out]</a>
       </li>
       {{/if}}
        <li>  
@@ -44,7 +44,7 @@
 {{/each}}
 </div>    
 <footer>
-Ghibli Archive by Kirran Kirpalani
+<p>Ghibli Archive by Kirran Kirpalani</p> 
 </footer>
 <script src="/scripts/script.js"></script>
   </body>
