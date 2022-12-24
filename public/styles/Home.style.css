@@ -65,6 +65,11 @@ img{
     margin: 5px 15px 20px;
 }
 
+.show-card:hover{
+    animation: pulsate 1s infinite alternate;
+}
+
+
 .show-card img{
     height: 250px;
     padding: 10px;
@@ -115,6 +120,17 @@ cursor: pointer;
     }
 }
 
+@keyframes pulsate{
+    0%{
+        scale: 1;
+    }
+    100%{
+        scale: 1.04;
+    }
+}
+
+
+
 @media (max-width:320px){
 nav ul {
     display: flex;
@@ -127,3 +143,4 @@ nav span{
     display: none;
 }
 }
+
