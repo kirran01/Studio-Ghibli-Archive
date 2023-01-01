@@ -155,7 +155,7 @@ z-index:-1;
 }
 
 
-@media(max-width:320px){
+@media(max-width:420px){
 
 
     nav ul{
@@ -182,6 +182,16 @@ z-index:-1;
         display: none;
     }
 
+    .show-details{
+        text-align: center;
+        padding: 0px;
+    }
+}
+
+@media(max-width:760px){
+    .show-info-card img{
+        display: none;
+    }
     .show-details{
         text-align: center;
         padding: 0px;
