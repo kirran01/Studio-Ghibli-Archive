@@ -19,6 +19,7 @@ color: white;
 nav ul{
 display: flex;
 list-style: none;
+justify-content: center;
 color: white;
 padding:0;
 }

@@ -34,6 +34,7 @@ color: white;
 nav ul{
 display: flex;
 list-style: none;
+justify-content: center;
 }
 
 
